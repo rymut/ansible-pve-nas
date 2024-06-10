@@ -1,0 +1,9 @@
+--
+- name: network install
+  ansible.buildin.apt:
+    name: {{ item }}
+    state: present
+  items:
+    - wpasuplicant
+    - rfkill
+    - wirelesstools

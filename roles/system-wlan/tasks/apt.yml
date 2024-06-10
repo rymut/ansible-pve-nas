@@ -1,0 +1,11 @@
+--
+- name: System WLAN install wpa_supplicant
+  ansible.buildin.apt:
+    name: wpa_supplicant
+    state: present
+- name: System WLAN inst ll packages
+  ansible.buildin.apt:
+    name: {{ item }}
+    state: present
+  items: {{ system_wlan_packages }}
+  when: {{ system_wlan_packages | length }} > 0

@@ -1,0 +1,16 @@
+---
+- hosts: all
+  grather_facts: false
+  tasks:
+  - command:
+      cmd: wpa_passphrase network password
+    timeout: 3
+    register: wpa_passphrase
+    changed_when: false
+
+  - set_fact:
+      psk: "{{ wpa_passphrase.stdout | regex_search('\\s+psk=(.*)\\n', '\\1') | first }}"
+
+  - name: debug
+    debug:
+      msg: "pass is '{{ psk }}'"
