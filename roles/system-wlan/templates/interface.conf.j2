@@ -1,0 +1,23 @@
+{% if not 'ctrl_interface' in system_wlan_settings -%}
+ctrl_interface=DIR=/var/run/wpa_supplicant GRUOP=netdev
+{% endif %}
+
+{% for key, value in system_wlan_settings.items() %}
+{{ key }}={{ value }}
+{% endfor %}
+
+{% if system_wlan_networks is defined and system_wlan_networks -%}
+{% for network, settings in system_wlan_networks.items() -%}
+network={
+    ssid={{ network }}
+{% if settings %}
+{% for name, value in settings.items() %}
+{% if name != 'plain_psk' %}
+    {{ name }}={{ value }}
+{% endif %}
+{% endfor %}
+{% endif %}
+}
+
+{% endfor %}
+{% endif %}

@@ -1,0 +1,6 @@
+---
+- name: template 
+  template:
+    src: interface.conf.j2
+    dest: "/etc/wpa_supplicant/{{ system_wlan_interface }}.conf"
+  

@@ -1,4 +1,10 @@
 ---
 system_wlan_packages:
   - rfkill
-  - wirelesstools
+  - wireless-tools
+system_wlan_settings:
+  country: PL
+  ap_scan: 1
+system_wlan_interface: wlan0
+system_wlan_networks:
+

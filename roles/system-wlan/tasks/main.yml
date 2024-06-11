@@ -1,9 +1,5 @@
---
-- name: network install
-  ansible.buildin.apt:
-    name: {{ item }}
-    state: present
-  items:
-    - wpasuplicant
-    - rfkill
-    - wirelesstools
+---
+- name: install packages
+  include: apt.yml
+- name: setup interface
+  include: wpaconfig.yml
