@@ -8,13 +8,14 @@ ctrl_interface=DIR=/var/run/wpa_supplicant GRUOP=netdev
 
 {% if system_wlan_networks is defined and system_wlan_networks -%}
 {% for network, settings in system_wlan_networks.items() -%}
+# {{ network }}
 network={
+{% if 'ssid' not in settings %}
     ssid={{ network }}
+{% endif %}
 {% if settings %}
 {% for name, value in settings.items() %}
-{% if name != 'plain_psk' %}
     {{ name }}={{ value }}
-{% endif %}
 {% endfor %}
 {% endif %}
 }

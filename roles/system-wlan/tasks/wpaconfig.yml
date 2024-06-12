@@ -1,4 +1,6 @@
 ---
+- debug:
+    var: system_wlan_networks
 - name: template 
   template:
     src: interface.conf.j2

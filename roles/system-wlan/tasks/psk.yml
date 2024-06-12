@@ -1,10 +1,23 @@
 ---
-- name: get wpa passphrase
-  command:
+- set_fact:
+    "{{ fact_name }}": {}
+  when: "fact_name not in hostvars[inventory_hostname]"
+- set_fact:
+    "{{ fact_name }}": "{{ hostvars[inventory_hostname][fact_name] | ansible.utils.remove_keys(target=network.key) | ansible.builtin.combine(old_item, recursive=true) }}"
+  vars:
+    old_item: "{ '{{ network.key }}': {{ network.value | ansible.utils.remove_keys(target='psk_plain') }} }"
+- command:
     cmd: "wpa_passphrase {{ network }} {{ password }}"
+  vars:
+    network: "{{ network.key }}"
+    password: "{{ network.value.psk_plain }}"
   timeout: 3
-  register: wpa_passphrase
+  register: system_wlan_wpa_passphrase
   changed_when: false
-- name: set output variable
-  set_fact:
-    "{{ psk | default('psk') }}": "{{ wpa_passphrase.stdout | regex_search('\\s+psk=(.*)\\n', '\\1') | first }}"
+  when: network.value.psk_plain is defined
+- set_fact:
+    "{{ fact_name }}": "{{ hostvars[inventory_hostname][fact_name] | ansible.builtin.combine(new_item, recursive=true) }}"
+  vars:
+    psk: "{{ system_wlan_wpa_passphrase.stdout | regex_search('\\s+psk=(.*)\\n', '\\1') | first }}"
+    new_item: "{ '{{ network.key }}': { 'psk': '{{ psk }}' } }"
+  when: network.value.psk_plain is defined

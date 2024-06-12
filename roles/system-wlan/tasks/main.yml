@@ -1,5 +1,5 @@
 ---
 - name: install packages
-  include: apt.yml
+  include_tasks: apt.yml
 - name: setup interface
-  include: wpaconfig.yml
+  include_tasks: wpaconfig.yml
