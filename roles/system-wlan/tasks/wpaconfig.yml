@@ -1,6 +1,11 @@
 ---
-- debug:
-    var: system_wlan_networks
+- include_tasks: psk.yml
+  with_dict: "{{ system_wlan_networks }}"
+  loop_control:
+    loop_var: network
+  vars:
+    fact_name: system_wlan_networks
+  no_log: true
 - name: template 
   template:
     src: interface.conf.j2
