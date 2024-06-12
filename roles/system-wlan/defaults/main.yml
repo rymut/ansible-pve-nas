@@ -7,4 +7,3 @@ system_wlan_settings:
   ap_scan: 1
 system_wlan_interface: wlan0
 system_wlan_networks:
-

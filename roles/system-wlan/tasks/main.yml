@@ -1,4 +1,6 @@
 ---
+- meta: end_play
+  when: not system_wlan_networks
 - name: install packages
   include_tasks: apt.yml
 - name: setup interface
