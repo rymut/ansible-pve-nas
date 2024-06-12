@@ -1,0 +1,6 @@
+---
+- hosts: pve-root
+  roles:
+    - role: system-wlan
+      tags:
+        - system-base
