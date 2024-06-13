@@ -1,0 +1,20 @@
+---
+system_udev_rule_id: 80
+system_udev_rule_name: net_setup_links
+system_udev_rule_state: present
+system_udev_rule_entries:
+  - subsystem: net
+    action: add
+    attr:
+      - address: enx1c1b0d6a12d4
+    name: eth0
+  - subsystem: net 
+    action: add
+    attr:
+      address: enx1c1b0d6a12d4
+    name: eth0
+  - subsystem: net
+    action: add
+    attr:
+      address: wlx0028f822c068
+    name: wlan0

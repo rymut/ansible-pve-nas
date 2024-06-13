@@ -1,0 +1,11 @@
+---
+- file:
+    state: absent
+    path: /etc/udev/rules.d/{{ system_udev_rule_id }}-{{ system_udev_rule_name }}.rules
+  when: system_udev_rule_state == 'absent'
+- meta: end_play
+  when: system_udev_rule_state != 'present'
+- name: template 
+  template:
+    src: rule.rules.j2
+    dest: "/etc/udev/rules.d/{{ system_udev_rule_id }}-{{ system_udev_rule_name }}.rules"
