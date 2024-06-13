@@ -1,3 +1,13 @@
-{% for entry in system_udev_rule_entries %}
-
+{% for entry in system_udev_rule_entries -%}
+  {%- for key, item in entry.items() -%}
+    {%- if item is not mapping -%} 
+       {{ key | upper }}="{{ item }}"
+    {%- else -%}
+       {%- for name, value in item.items() -%}
+          {{ key | upper }}{ {{- name -}} }="{{ value }}"
+          {%- if not loop.last -%}, {% endif -%}
+       {%- endfor -%}
+    {%- endif -%}
+    {%- if not loop.last -%}, {% endif -%}
+  {% endfor %}
 {% endfor %}

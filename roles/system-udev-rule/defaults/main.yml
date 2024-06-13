@@ -6,12 +6,12 @@ system_udev_rule_entries:
   - subsystem: net
     action: add
     attr:
-      - address: enx1c1b0d6a12d4
+      address: enx1c1b0d6a12d4
     name: eth0
   - subsystem: net 
     action: add
     attr:
-      address: enx1c1b0d6a12d4
+      address: enx1c1b0d6a12d5
     name: eth0
   - subsystem: net
     action: add
