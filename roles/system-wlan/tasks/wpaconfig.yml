@@ -8,6 +8,6 @@
   no_log: true
 - name: template 
   template:
-    src: interface.conf.j2
+    src: wpa_supplicant.conf.j2
     dest: "/etc/wpa_supplicant/{{ system_wlan_interface }}.conf"
   
