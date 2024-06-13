@@ -1,0 +1,34 @@
+# configuration from sourced files, so do not attempt to move any of
+# the PVE managed interfaces into external files!
+{{ '\n' }}
+{%- for entry in system_network_entries -%}
+  {%- if entry.comment is string -%}
+   # {{ entry.comment }}{{ '\n' }}
+  {%- elif entry.comment is iterable -%}
+     {%- for line in entry.comment -%}
+       # {{ line }}{{ '\n' }}
+     {%- endfor -%}
+  {%- endif -%}
+  {%- for config in entry.configs | default([{}]) -%}
+    {{ config.keyword }} {{ entry.name }} {{ config.protocol }} {{ config.executor }}
+    {%- for key, content in (config.options | default({})).items() -%}
+      {%- if  content is iterable and content is not string -%}
+         {%- for value in content -%}
+            {{ '\n\t' }}{{ key }}: {{ value }}
+         {%- endfor -%}
+      {%- else -%}
+          {{ '\n\t' }}{{ key }}: {{ content }}
+      {%- endif -%}
+    {%- endfor -%}
+  {{ '\n' }}
+  {%- endfor -%}
+  {{ '\n' }}
+{%- endfor -%}
+
+{%- if system_network_sources is string -%}
+   source {{ system_network_sources }}{{ '\n' }}
+{%- else -%}
+   {%- for source in system_network_sources -%}
+    source {{ source }}{{ '\n' }}
+  {%- endfor -%}
+{%- endif -%}
