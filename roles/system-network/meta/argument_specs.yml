@@ -1,0 +1,66 @@
+---
+argument_specs:
+  # roles/system-network/tasks/main.yml entry point
+  main:
+    short_description: Main entry point for the system-network role
+    description:
+      - This is the main entrypoint for the System Network configuration role.
+      - Role is used to configure /etc/network/interfaces or /etc/networke/interfaces.d/interface files.
+    author:
+      - Boguslaw Rymut
+    options:
+      system_network_sources:
+        type: "list"
+        elements: "str"
+        required: false
+        default:
+          - "/etc/network/interfaces.d/*"
+        description:
+          - "Store path that will be included after source keyword"
+
+      system_network_entries:
+        type: "list"
+        element: "dict"
+        required: false
+        description: "store configuration of elements"
+        options:
+          name:
+            type: "str"
+            required: true
+            description: "Name of interface"
+          comment:
+            type: "list"
+            element: "str"
+            required: false
+            description: "comment before entry"
+          configs:
+            type: "list"
+            element: "dict"
+            required: false
+            description: "list"
+            options:
+              keywoard:
+                type: "str"
+                choices:
+                  - "auto"
+                  - "allow-hotplug"
+                  - "iface"
+                  - "mapping"
+                required: true
+                description: "keyword of interfaces"
+              protocol:
+                type: "str"
+                choices:
+                  - inet
+                  - inet6
+                required: false
+              executor:
+                type: str
+                choices:
+                  - loopback
+                  - manual
+                  - static
+                required: false
+              options:
+                type: dict
+                required: false
