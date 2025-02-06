@@ -1,5 +1,4 @@
 ---
----
 - file:
     state: absent
     path: "{{ system_network_interfaces_path }}"
