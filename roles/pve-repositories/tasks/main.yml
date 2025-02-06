@@ -1,0 +1,15 @@
+---
+- name: Setup Proxmox Repositiries
+  become: yes
+  block:
+    - name: Proxmox Enterprise Repository
+      apt_repository:
+        filename: pve-enterprise
+        repo: deb https://enterprise.proxmox.com/debian/pve bookworm pve-enterprise
+        state: "{{ pve_repositiories__state }}"
+
+    - name: Proxmox CEPH Repository
+      apt_repository:
+        filename: ceph
+        repo: deb https://enterprise.proxmox.com/debian/ceph-quincy bookworm enterprise
+        state: "{{ pve_repositiories__state }}"
