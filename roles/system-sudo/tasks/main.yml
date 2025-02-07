@@ -1,0 +1,19 @@
+---
+- name: Add sudo package
+  become: yes
+  package:
+    name: sudo
+    state: present
+  register: result
+  until: result is succeeded
+
+- name: Add users to suorders
+  become: yes
+  community.general.sudoers:
+    name: "{{ item }}-as-root"
+    state: "{{ state }}"
+    user: "{{ item }}"
+    nopassword: false
+    commands: ALL
+  loop: "{{ users }}"
+  when: state == 'present'

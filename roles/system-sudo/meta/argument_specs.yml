@@ -1,0 +1,23 @@
+---
+argument_specs:
+  # roles/system-sudo/tasks/main.yml entry point
+  main:
+    short_description: Main entry point for the system-sudo role
+    description:
+      - This is the main entrypoint for the System User configuration role.
+    author:
+      - Boguslaw Rymut
+    options:
+      state:
+        type: "str"
+        chocies:
+          - "present"
+          - "absent"
+        default: "present"
+        description: "Add remove sudo"
+      users:
+        type: "list"
+        element: "str"
+        required: false
+        default: []
+        description: "Users to add to sudo"

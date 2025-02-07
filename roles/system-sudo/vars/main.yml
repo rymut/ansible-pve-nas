@@ -1,0 +1,3 @@
+---
+state: "{{ system_sudo__state }}"
+users: "{{ system_sudo__users }}"
