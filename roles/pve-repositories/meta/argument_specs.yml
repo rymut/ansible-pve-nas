@@ -1,0 +1,19 @@
+---
+argument_specs:
+  # roles/pve-repositories/tasks/main.yml entry point
+  main:
+    short_description: Main entry point for the pve-repositories role
+    description:
+      - This is the main entrypoint for the Proxmox Repositories configuration role.
+      - Role is used to configure disable/enable proxmox commercial repositories.
+    author:
+      - Boguslaw Rymut
+    options:
+      pve_repositiories__state:
+        type: "str"
+        choices:
+          - present
+          - absent
+        required: false
+        default: absent
+        description: "Enables / disables repositories"
