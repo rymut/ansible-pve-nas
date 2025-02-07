@@ -16,6 +16,6 @@
     create_home: true
     update_password: on_create
     password: "{{ password | password_hash('sha512') }}"
-    group: "{{ group }}"
-    shell: "{{ shell }}"
+    group: "{{ group if group is not none else omit }}"
+    shell: "{{ shell if shell is not none else omit  }}"
     uid: "{{ uid if uid is not none else omit }}"

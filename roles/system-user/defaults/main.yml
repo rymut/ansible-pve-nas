@@ -1,8 +1,8 @@
 ---
-system_user__uid:
+system_user__uid: null
 system_user__name: "ansible"
 system_user__password: "ansible"
-system_user__group: "ansible"
+system_user__group: null
 system_user__gid: null
 system_user__shell: /bin/bash
 system_user__state: present
