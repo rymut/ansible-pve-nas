@@ -1,20 +1,21 @@
 ---
-- name: "Group {{ system_user__group_name }}"
+- name: "Group {{ group }}"
   become: yes
   ansible.builtin.group:
-    name: "{{ system_user__group_name }}"
-    gid: "{{ system_user__group_id | default(omit) }}"
+    name: "{{ group }}"
+    gid: "{{ gid if gid is not none else omit }}"
     state: present
-  when: system_user__group_name is defined
+  when: group
 
-- name: "User {{ system_user__name }}"
+- name: "User {{ name }}"
   become: yes
   ansible.builtin.user:
-    name: "{{ system_user__name }}"
-    state: "{{ system_user__state }}"
+    name: "{{ name }}"
+    state: "{{ state }}"
     system: yes
     create_home: true
-    password: "{{ system_user__password | password_hash('sha512') }}"
-    group: "{{ system_user__group_name | default(omit) }}"
-    shell: "{{ system_user__shell }}"
-    uid: "{{ system_user__id | default(omit) }}"
+    update_password: on_create
+    password: "{{ password | password_hash('sha512') }}"
+    group: "{{ group }}"
+    shell: "{{ shell }}"
+    uid: "{{ uid if uid is not none else omit }}"

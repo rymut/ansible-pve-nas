@@ -1,9 +1,8 @@
 ---
-# default username and password
-# system_user__id:
+system_user__uid:
 system_user__name: "ansible"
 system_user__password: "ansible"
-system_user__group_name: ansible
-# system_user__group_id:
+system_user__group: "ansible"
+system_user__gid: null
 system_user__shell: /bin/bash
 system_user__state: present

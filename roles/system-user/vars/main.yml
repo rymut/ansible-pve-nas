@@ -1,0 +1,9 @@
+---
+uid: null
+# "{{ system_user__uid }}"
+name: "{{ system_user__name }}"
+password: "{{ system_user__password }}"
+group: "{{ system_user__group }}"
+gid: "{{ system_user__gid }}"
+shell: "{{ system_user__shell }}"
+state: "{{ system_user__state }}"
