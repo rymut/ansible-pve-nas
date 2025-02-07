@@ -1,0 +1,4 @@
+---
+name: "{{ service_powertop__service_name }}"
+state: "{{ service_powertop__state }}"
+packages: "{{ service_powertop__packages }}"

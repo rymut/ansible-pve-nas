@@ -1,0 +1,5 @@
+---
+service_powertop__service_name: powertop
+service_powertop__state: present
+service_powertop__packages:
+  - powertop

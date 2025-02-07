@@ -1,0 +1,31 @@
+---
+argument_specs:
+  # roles/service-powertop/tasks/main.yml entry point
+  main:
+    short_description: Main entry point for the service-powertop role
+    description:
+      - This is the main entrypoint for the System Upgrade configuration role.
+      - Role is used to install and run powertop
+    author:
+      - Boguslaw Rymut
+    options:
+      name:
+        type: str
+        required: false
+        default: "powertop"
+        description: "Powertop service name"
+      state:
+        type: str
+        required: false
+        choices:
+          - present
+          - absent
+        default: present
+        description: Install or remove service
+      packages:
+        type: list
+        element: str
+        required: false
+        default:
+          - powertop
+        desciption: Packages required for running powertop
