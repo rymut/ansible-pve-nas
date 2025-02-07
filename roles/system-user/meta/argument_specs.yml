@@ -1,0 +1,45 @@
+---
+argument_specs:
+  # roles/system-user/tasks/main.yml entry point
+  main:
+    short_description: Main entry point for the system-user role
+    description:
+      - This is the main entrypoint for the System User configuration role.
+      - Role is used to configure single user and optionally group for the system.
+    author:
+      - Boguslaw Rymut
+    options:
+      system_user__state:
+        type: "str"
+        chocies:
+          - "present"
+          - "absent"
+        default: "present"
+        description: "Create/Update user or delete user"
+      system_user__name:
+        type: "str"
+        required: false
+        default: "ansible"
+        description: "User name to be used"
+      system_user__id:
+        type: "int"
+        required: false
+        description: "UID of the user"
+      system_user__password:
+        type: "str"
+        required: false
+        default: "ansible"
+        description: "Password for username"
+      system_user__group_name:
+        type: "str"
+        required: false
+        default: "ansible"
+      system_user__group_id:
+        type: "int"
+        required: false
+        description: "Group ID"
+      system_user_shell:
+        type: "str"
+        required: false
+        default: "/bin/bash"
+        description: "Shell used by user"
