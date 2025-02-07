@@ -33,7 +33,7 @@ argument_specs:
       group:
         type: "str"
         required: false
-        default: "ansible"
+        description: "Group name"
       gid:
         type: "int"
         required: false

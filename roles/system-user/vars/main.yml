@@ -1,6 +1,5 @@
 ---
-uid: null
-# "{{ system_user__uid }}"
+uid: "{{ system_user__uid }}"
 name: "{{ system_user__name }}"
 password: "{{ system_user__password }}"
 group: "{{ system_user__group }}"
