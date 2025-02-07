@@ -1,10 +1,12 @@
 ---
-- file:
+- name: Remove network configuration
+  file:
     state: absent
     path: "{{ system_network_interfaces_path }}"
   when: system_network_state == 'absent'
-- meta: end_play
-  when: system_network_state != 'present'
-- template:
+
+- name: Create network configuration
+  template:
     src: interfaces.j2
     dest: "{{ system_network_interfaces_path }}"
+  when: system_network_state == 'present'
